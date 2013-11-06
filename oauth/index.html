@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<script src="http://code.jquery.com/jquery.min.js"></script>	
+		<script language="javascript">
+			var hash = window.location.hash && window.location.hash[0] == "#" ? window.location.hash.substr(1) : window.location.hash;
+			
+			var split = hash.split("=");
+			var index = split.indexOf("access_token");
+			if (index == -1) window.location = "slidetagram.com";
+			var token = split[index+1];
+			window.location = "http://slidetagram.com/slide?access_token="+token;
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
