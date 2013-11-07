@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>Slidetagram. Create a live slideshow with instagram photos</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+                <link href="../css/jumbotron-narrow.css" rel="stylesheet">
+                <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!--[if lt IE 9]>
+                        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+                <![endif]-->
+		<script language="javascript">
+			var hash = window.location.hash && window.location.hash[0] == "#" ? window.location.hash.substr(1) : window.location.hash;
+                        
+            var split = hash.split("=");
+            var index = split.indexOf("access_token");
+            if (index == -1) window.location = "slidetagram.com";
+            var token = split[index+1];
+			window.location.hash = "#";
+		</script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-45490731-1', 'slidetagram.com');
+          ga('send', 'pageview');
+
+        </script>
+        </head>
+        <body>
+                <div class="container">
+                        <div class="header">
+                                <ul class="nav nav-pills pull-right">
+                                        <li class="active"><a href="http://slidetagram.com">Home</a></li>
+                                        <li><a href="about">About</a></li>
+                                        <li><a href="contact">Contact</a></li>
+                                </ul>
+                                <h3 class="text-muted">Slidetagram</h3>
+                        </div>
+
+                        <div class="jumbotron">
+                                <h1>Welcome!</h1>
+                                <p class="lead">Now you can create your custom live slide show!</p>
+                                <p class="lead">Choose your <input type="text" placeholder="#hashtag" id="search_tag" /> and click go!</p>
+                        </div>
+
+
+                        <div class="footer">
+                                <p>&copy; Slidetagram 2013</p>
+                        </div>
+
+                </div> <!-- /container -->
+                <script src="http://code.jquery.com/jquery.js"></script>
+                <script src="../js/bootstrap.min.js"></script>
+        </body>
+</html>
