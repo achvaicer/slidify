@@ -54,7 +54,7 @@
 				<div class="row">
 					<div class="span12">
 						<div class="panel panel-default">
-							<div class="panel-body" id="instruction">Add the hashtag <span id="searched_hashtag" class="label label-success">#hashtag</span> into your Instagram photos</div>
+							<div class="panel-body" id="instruction">Add the hashtag <span id="searched_hashtag" class="text-success">#hashtag</span> into your Instagram photos</div>
 						</div>
 					</div>
 				</div>
@@ -66,6 +66,14 @@
 						<div class="media outgoing">
 							<img class="photo" style="display:none" />
 						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span12">
+						<blockquote id="owner">
+							<p></p>
+							<small></small>
+						</blockquote>
 					</div>
 				</div>
 
@@ -103,17 +111,19 @@
 				clearInterval(interval);
 				items.sort(function (a,b) { return a.viewed <= b.viewed ? -1 : 1 });
 				var first = items[0];
-				first.show(first.src);
+				first.show(first);
 				min = first.viewed++;
 				setTimeout(showLessViewed, first.duration);
 			}
 
-			function showPhoto(src) {
-				$(".incoming .photo").attr("src", src).show();
+			function showPhoto(data) {
+				$(".incoming .photo").attr("src", data.src).show();
 				switchMediaDivs();
+				$("#owner p").text((data.caption || {}).text);
+				$("#owner small").text((data.caption || {from:{}}).from.username);
 			}
 			
-			function switchMediaDivs() {
+			function switchMediaDivs() {0
 				$(".incoming").removeClass("incoming").addClass("temp");
 				$(".outgoing").removeClass("outgoing").addClass("incoming");
 				$(".temp").removeClass("temp").addClass("outgoing");
@@ -128,10 +138,10 @@
 					for (var i=0; i < f.length; i++) {
 						var src = f[i].images.standard_resolution.url;
 						if (!items.filter(function(e) { return e.type == "photo" && e.src == src }).length)
-						        items.push({"src":src, type:"photo", viewed:min, show:showPhoto, duration:10000});
+						        items.push({"src":src, type:"photo", viewed:min, show:showPhoto, duration:10000, caption: f[i].caption, comments: f[i].comments.data});
 
 					}
-					setTimeout(loadPhoto, 300000);
+					setTimeout(loadPhoto, 6000);
 				});
 			}
 
