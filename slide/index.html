@@ -6,6 +6,8 @@
                 <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
                 <link href="../css/jumbotron-narrow.css" rel="stylesheet">
 		<link href="../css/transitions.css" rel="styleshett">
+		<link rel="shortcut icon" href="../favicon.ico" >
+		<link rel="icon" type="image/gif" href="../animated_favicon1.gif" >
                 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
                 <!--[if lt IE 9]>
                         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -15,7 +17,7 @@
 			var hash = window.location.hash && window.location.hash[0] == "#" ? window.location.hash.substr(1) : window.location.hash;
                         var split = hash.split("=");
 			var index = split.indexOf("access_token");
-			if (index == -1) window.location = "slidetagram.com";
+			if (index == -1) window.location = "http://slidetagram.com";
 			var token = split[index+1];
 			window.location.hash = "";
 		</script>
@@ -24,9 +26,9 @@
                 <div class="container">
                         <div class="header">
                                 <ul class="nav nav-pills pull-right">
-                                        <li class="active"><a href="http://slidetagram.com">Home</a></li>
-                                        <li><a href="about">About</a></li>
-                                        <li><a href="contact">Contact</a></li>
+                                        <li class="active"><a href="../">Home</a></li>
+                                        <li><a href="../about">About</a></li>
+                                        <li><a href="../contact">Contact</a></li>
                                 </ul>
                                 <h3 class="text-muted">Slidetagram</h3>
                         </div>
@@ -39,11 +41,22 @@
 
 			
 			<div class="slideshow" style="display:none">
-				<div class="media incoming">
-					<img class="photo" style="display:none" />
+				<div class="row">
+					<div class="span12">
+						<div class="panel panel-default">
+							<div class="panel-body" id="instruction">Add the hashtag <span id="searched_hashtag" class="label label-success">#hashtag</span> into your Instagram photos</div>
+						</div>
+					</div>
 				</div>
-				<div class="media outgoing">
-					<img class="photo" style="display:none" />
+				<div class="row">
+					<div class="span12">
+						<div class="media incoming">
+							<img class="photo" style="display:none" />
+						</div>
+						<div class="media outgoing">
+							<img class="photo" style="display:none" />
+						</div>
+					</div>
 				</div>
 
 			</div>
@@ -54,23 +67,11 @@
                 </div> <!-- /container -->
                 <script src="http://code.jquery.com/jquery.js"></script>
                 <script src="../js/bootstrap.min.js"></script>
+		<script src="../js/jquery.fullscreen-min.js"></script>
 		<script language="javascript">
 			var items = [];
 			var interval = 0;
 			var min;
-
-			function requestFullScreen(element) {
-                                var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
-
-                                if (requestMethod) {
-                                        requestMethod.call(element);
-                                } else if (typeof window.ActiveXObject !== "undefined") {
-                                        var wscript = new ActiveXObject("WScript.Shell");
-                                        if (wscript !== null) {
-                                                wscript.SendKeys("{F11}");
-                                        }
-                                }
-                        }
 
 			function showSlideShow() {
 				$(".header, .jumbotron").hide();
@@ -128,14 +129,15 @@
 				loadPhoto();
 				interval = setInterval(showLessViewed, 5000);
 				showSlideShow();
-				requestFullScreen(document.body);
+				$(document).fullScreen(true);
 		
 			}
 
 			$("#go").click(go);
 			$("#search_tag")
 				.focus(function() { var self = $(this); if (self.val() == "") self.val("#");  })
-				.blur(function() { var self = $(this); if (self.val() == "#") self.val("");});
+				.blur(function() { var self = $(this); if (self.val() == "#") self.val("");})
+				.change(function() { var self = $(this); $("#searched_hashtag").text(self.val()); });
 		</script>
         </body>
 </html>
