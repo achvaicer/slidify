@@ -128,10 +128,10 @@
 					for (var i=0; i < f.length; i++) {
 						var src = f[i].images.standard_resolution.url;
 						if (!items.filter(function(e) { return e.type == "photo" && e.src == src }).length)
-						        items.push({"src":src, type:"photo", viewed:min, show:showPhoto, duration:10000, caption: f[i].caption, comments: f[i].comments.data});
+						        items.push({"src":src, type:"photo", viewed:min, show:showPhoto, duration:5000, caption: f[i].caption, comments: f[i].comments.data});
 
 					}
-					setTimeout(loadPhoto, 6000);
+					setTimeout(loadPhoto, 30000);
 				});
 			}
 
