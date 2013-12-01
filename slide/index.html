@@ -35,7 +35,7 @@
                         <div class="jumbotron">
                                 <h1>Welcome!</h1>
                                 <p class="lead">Now you can create your custom live slide show!</p>
-                                <p class="lead">Choose your <input type="text" placeholder="#hashtag" id="search_tag" /> and <button id="go" class="btn btn-success">go!</button></p>
+                                <p class="lead">Choose your <input type="text" placeholder="#hashtag" id="search_tag" data-bind="value: hashtag" /> and <button id="go" class="btn btn-success">go!</button></p>
 				<p class="lead pull-right"><button id="advanced-button" type="button" class="btn btn-xs"><i class="icon-cog"></i>advanced options</button></p>
 				<br />
                         </div>
@@ -56,9 +56,9 @@
 					<div class="form-group">
 						<label for="textArea" class="col-lg-2 control-label">Instruction text</label>
 						<div class="col-lg-10">
-							<textarea class="form-control" rows="3" id="textArea" data-bind="instruction">Add the hashtag {{#hashtag}} into your Instagram photos</textarea>
+							<textarea class="form-control" rows="3" id="textArea" data-bind="value: instruction"></textarea>
+							<div class="help-block">Don't remove the {{#hashtag}} from the text</div>
 						</div>
-						<div class="help-block">Don't remove the {{#hashtag}} from the text</div>
 					</div>
 					</fieldset>
 				</form>
@@ -68,7 +68,7 @@
 				<div class="row">
 					<div class="span12">
 						<div class="panel panel-default">
-							<div class="panel-body" id="instruction" data-bind="fullInstruction"></div>
+							<div class="panel-body" id="instruction" data-bind="html: fullInstruction"></div>
 						</div>
 					</div>
 				</div>
@@ -184,7 +184,7 @@
 				self.showOtherUserComment = ko.observable(false);
 				self.instruction = ko.observable("Add the hashtag {{#hashtag}} into your Instagram photos");
 				self.hashtag = ko.observable("");
-				self.fullInstruction = ko.computed(function() { return self.instruction().replace("{{#hashtag}}", "<span class='text-success'>" + self.hashtag + "</span>");}, self);
+				self.fullInstruction = ko.computed(function() { return self.instruction().replace("{{#hashtag}}", "<span class='text-success'>" + self.hashtag() + "</span>");}, self);
 			};
 
 			ko.applyBindings(new slideshowViewModel());
