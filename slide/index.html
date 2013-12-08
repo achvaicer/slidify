@@ -33,9 +33,12 @@
                         </div>
 
                         <div class="jumbotron">
-                                <h1>Welcome!</h1>
-                                <p class="lead">Now you can create your custom live slide show!</p>
-                                <p class="lead">Choose your <input type="text" placeholder="#hashtag" id="search_tag" data-bind="value: hashtag" /> and <button id="go" class="btn btn-success">go!</button></p>
+				<form id="main-form">
+	                                <h1>Welcome!</h1>
+        	                        <p class="lead">Now you can create your custom live slide show!</p>
+                	                <p class="lead">Choose your <input type="text" placeholder="#hashtag" id="search_tag" data-bind="value: hashtag" /> and <button id="go" class="btn btn-success">go!</button></p>
+				
+				</form>
 				<p class="lead pull-right"><button id="advanced-button" type="button" class="btn btn-xs"><i class="icon-cog"></i>advanced options</button></p>
 				<br />
                         </div>
@@ -173,7 +176,7 @@
 				$(document).fullScreen(true);
 		
 			}
-
+			$("#main-form").submit(function() { go(); return false;});
 			$("#go").click(go);
 			$("#search_tag")
 				.focus(function() { var self = $(this); if (self.val() == "") self.val("#");  })
