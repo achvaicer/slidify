@@ -113,7 +113,7 @@
 		<script language="javascript">
 			var items = [];
 			var interval = 0;
-			var min;
+			var min = 0;
 
 			function showSlideShow() {
 				$(".header, .jumbotron, #advanced-options").hide();
@@ -147,7 +147,7 @@
 				vm.comments(data.comments);
 			}
 			
-			function switchMediaDivs() {0
+			function switchMediaDivs() {
 				$(".incoming").removeClass("incoming").addClass("temp");
 				$(".outgoing").removeClass("outgoing").addClass("incoming");
 				$(".temp").removeClass("temp").addClass("outgoing");
@@ -177,11 +177,9 @@
 		
 			}
 			$("#main-form").submit(function() { go(); return false;});
-			$("#go").click(go);
 			$("#search_tag")
 				.focus(function() { var self = $(this); if (self.val() == "") self.val("#");  })
 				.blur(function() { var self = $(this); if (self.val() == "#") self.val("");});
-				//.change(function() { var self = $(this); $("#searched_hashtag").text(self.val()); });
 
 			$("#advanced-button").click(function() {
 				$("#advanced-options").toggle("slow");
