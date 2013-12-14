@@ -3,11 +3,6 @@
         -webkit-transition-duration: 1s;
         -webkit-transition-timing-function: ease-in-out;
         -webkit-backface-visibility: hidden;
-        position: absolute;
-        float: left;
-        left: 50%;
-        width: 500px;
-        margin-left: -250px;
         text-align: center;
 }
 
