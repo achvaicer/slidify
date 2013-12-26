@@ -57,6 +57,12 @@
 						</label>
 					</div>-->
 					<div class="form-group">
+						<label for="textArea" class="col-lg-2 control-label">Interval in seconds between photos</label>
+						<div class="col-lg-10">
+							<input type="text" data-bind="value: interval" />
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="textArea" class="col-lg-2 control-label">Instruction text</label>
 						<div class="col-lg-10">
 							<textarea class="form-control" rows="3" id="textArea" data-bind="value: instruction"></textarea>
@@ -162,7 +168,7 @@
 					for (var i=0; i < f.length; i++) {
 						var src = f[i].images.standard_resolution.url;
 						if (!items.filter(function(e) { return e.type == "photo" && e.src == src }).length)
-						        items.push({"src":src, type:"photo", viewed:min, show:showPhoto, duration:5000, caption: f[i].caption, comments: f[i].comments.data});
+						        items.push({"src":src, type:"photo", viewed:min, show:showPhoto, duration:vm.interval(), caption: f[i].caption, comments: f[i].comments.data});
 
 					}
 					setTimeout(loadPhoto, 30000);
@@ -190,6 +196,7 @@
 				self.showUserAndCaptions = ko.observable(true);
 				self.showOtherUserComments = ko.observable(false);
 				self.instruction = ko.observable("Add the hashtag {{#hashtag}} into your Instagram photos");
+				self.interval = ko.observable(7);
 				self.hashtag = ko.observable("");
 				self.fullInstruction = ko.computed(function() { return self.instruction().replace("{{#hashtag}}", "<span class='text-success'>" + self.hashtag() + "</span>");}, self);
 				self.comments = ko.observableArray([{ text: "", from:{username:""}  }]);
