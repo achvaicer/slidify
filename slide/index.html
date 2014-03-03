@@ -17,7 +17,7 @@
 		<script language="javascript">
 			var token = cookie.get('token');
 			if (token == undefined) authByHash();
-		
+			window.location.hash = "";
 			function authByHash() {	
 				var hash = window.location.hash && window.location.hash[0] == "#" ? window.location.hash.substr(1) : window.location.hash;
     	        var split = hash.split("=");
@@ -25,7 +25,6 @@
 				if (index == -1) window.location = "http://slidetagram.com";
 				token = split[index+1];
 				cookie.set('token', token);
-				window.location.hash = "";
 			}
 		</script>
         </head>
