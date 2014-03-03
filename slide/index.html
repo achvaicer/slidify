@@ -13,13 +13,20 @@
                         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
                         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
                 <![endif]-->
+		<script src="../js/cookie.min.js"></script>
 		<script language="javascript">
-			var hash = window.location.hash && window.location.hash[0] == "#" ? window.location.hash.substr(1) : window.location.hash;
-                        var split = hash.split("=");
-			var index = split.indexOf("access_token");
-			if (index == -1) window.location = "http://slidetagram.com";
-			var token = split[index+1];
-			window.location.hash = "";
+			var token = cookie.get('token');
+			if (token == undefined) authByHash();
+		
+			function authByHash() {	
+				var hash = window.location.hash && window.location.hash[0] == "#" ? window.location.hash.substr(1) : window.location.hash;
+    	        var split = hash.split("=");
+				var index = split.indexOf("access_token");
+				if (index == -1) window.location = "http://slidetagram.com";
+				token = split[index+1];
+				cookie.set('token', token);
+				window.location.hash = "";
+			}
 		</script>
         </head>
         <body>
@@ -168,7 +175,7 @@
 					for (var i=0; i < f.length; i++) {
 						var src = f[i].images.standard_resolution.url;
 						if (!items.filter(function(e) { return e.type == "photo" && e.src == src }).length)
-						        items.push({"src":src, type:"photo", viewed:min, show:showPhoto, duration:vm.interval(), caption: f[i].caption, comments: f[i].comments.data});
+						        items.push({"src":src, type:"photo", viewed:min, show:showPhoto, duration:vm.interval() * 1000, caption: f[i].caption, comments: f[i].comments.data});
 
 					}
 					setTimeout(loadPhoto, 30000);
