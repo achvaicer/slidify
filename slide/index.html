@@ -24,7 +24,7 @@
 				var index = split.indexOf("access_token");
 				if (index == -1) window.location = "http://slidetagram.com";
 				token = split[index+1];
-				cookie.set('token', token);
+				cookie.set('token', token, {domain:'slidetagram.com', path:''});
 			}
 		</script>
         </head>
