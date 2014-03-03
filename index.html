@@ -77,7 +77,6 @@
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="js/cookie.min.js"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {
 				var token = cookie.get('token');
 				if (token)
 					$.ajax({
@@ -90,7 +89,6 @@
 										$('#login').attr('href', 'slide/').find('span').text('Logged in as ' + response.data.username);
 								}
 					});
-			});
 		</script>
 		<script src="js/bootstrap.min.js"></script>
 		
