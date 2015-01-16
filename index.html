@@ -87,8 +87,8 @@
 </script>
 
 			<div class="footer">
-				<p>Made with <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> in Rio de Janeiro &copy; Slidetagram <span id="year"></span></p>
-			</div>
+                                <p>Made with <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> in Rio de Janeiro &copy; Slidetagram <script>document.write(new Date().getFullYear())</script></p>
+                        </div>
 
 		</div> <!-- /container -->
 		<script src="http://code.jquery.com/jquery.js"></script>
@@ -106,8 +106,6 @@
 										$('#login').attr('href', 'slide/').find('span').text('Logged in as ' + response.data.username);
 								}
 					});
-
-				$("#year").text(new Date().getFullYear());
 		</script>
 		<script src="js/bootstrap.min.js"></script>
 		
