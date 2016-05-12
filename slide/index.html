@@ -16,11 +16,13 @@
 		<script src="../js/cookie.min.js"></script>
 		<script language="javascript">
 			var token = cookie.get('token');
-			if (token == undefined) authByHash();
+			if (token == undefined || token == "") 
+				authByHash();
 			window.location.hash = "";
+			
 			function authByHash() {	
 				var hash = window.location.hash && window.location.hash[0] == "#" ? window.location.hash.substr(1) : window.location.hash;
-    	        var split = hash.split("=");
+    	        		var split = hash.split("=");
 				var index = split.indexOf("access_token");
 				if (index == -1) window.location = "http://slidetagram.com";
 				token = split[index+1];
