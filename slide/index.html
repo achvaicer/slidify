@@ -21,6 +21,7 @@
 			window.location.hash = "";
 			
 			function authByHash() {	
+				console.log(window.location);
 				var hash = window.location.hash && window.location.hash[0] == "#" ? window.location.hash.substr(1) : window.location.hash;
     	        		var split = hash.split("=");
 				var index = split.indexOf("access_token");
