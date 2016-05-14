@@ -6,6 +6,7 @@
                 <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
                 <link href="../css/jumbotron-narrow.css" rel="stylesheet">
 		<link href="../css/transitions.css" rel="stylesheet">
+		<link href="../css/pick-a-color-1.1.8.min.css" rel="stylesheet" >
 		<link rel="shortcut icon" href="../favicon.ico" >
 		<link rel="icon" type="image/gif" href="../animated_favicon1.gif" >
                 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -88,6 +89,12 @@
 							<div class="help-block">Don't remove the <strong>{{#hashtag}}</strong> from the text</div>
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="backgroundColor" class="col-lg-2 control-label">Background Color</label>
+						<div class="col-lg-10">
+							<input type="text" value="white" id="backgroundColor" name="backgroudColor" class="pick-a-color form-control">
+						</div>
+					</div>
 					</fieldset>
 				</form>
                                 </div>
@@ -135,6 +142,8 @@
                 <script src="../js/bootstrap.min.js"></script>
 		<script src="../js/jquery.fullscreen-min.js"></script>
 		<script src="../js/knockout-3.0.0.js"></script>
+		<script src="../js/tinycolor-0.9.15.min.js"></script>
+		<script src="../js/pick-a-color-1.1.8.min.js"></script>
 		<script language="javascript">
 			var items = [];
 			var interval = 0;
@@ -209,7 +218,23 @@
 			$("#advanced-button").click(function() {
 				$("#advanced-options").toggle("slow");
 			});
-
+			
+			$(".pick-a-color")
+				.change(function() {
+					var val = $(this).val();
+					$("body").css("background-color", "#" + val)
+				})
+				.pickAColor({
+					showSpectrum            : false,
+					showSavedColors         : false,
+					showAdvanced		: false,
+					saveColorsPerElement    : false,
+					fadeMenuToggle          : true,
+					showHexInput            : false,
+					showBasicColors         : true,
+					allowBlank              : false,
+					inlineDropdown          : false
+				});
 			var slideshowViewModel = function() {
 				self = this;
 				self.showUserAndCaptions = ko.observable(true);
